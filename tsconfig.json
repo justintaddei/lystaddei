@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "module": "None",
+    "target": "ES5",
+    "lib": ["ES2015", "dom"],
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "outDir": "./static/js",
+    "sourceMap": true
+  },
+  "include": ["static/ts/**/*"],
+  "exclude": ["node_modules"]
+}

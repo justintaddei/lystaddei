@@ -1,0 +1,102 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  background: #212121;
+  color: #fafafa;
+  overflow-x: hidden;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  -webkit-tap-highlight-color: transparent;
+}
+
+section {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+
+  &#welcome {
+    #scrollingVideo {
+      height: 100vh;
+      width: 100%;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      position: fixed;
+      background: url("/images/lys-bw.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    $fontSize: 10vw;
+    h1 {
+      font-size: $fontSize;
+      font-weight: 600;
+      line-height: $fontSize;
+      top: calc(50% - #{$fontSize / 2});
+      position: absolute;
+      text-align: center;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      .js-lystaddei-text-animation {
+        display: inline-block;
+      }
+    }
+
+    .scroll-down {
+      position: absolute;
+      font-size: calc(15px + 2vw);
+      text-align: center;
+      width: 100%;
+      left: 0;
+      top: calc(50% + #{$fontSize});
+      cursor: pointer;
+      p {
+        margin: 0;
+        padding: 0;
+      }
+      svg {
+        $size: calc(25px + 2vw);
+        width: $size;
+        height: $size;
+        fill: #fff;
+      }
+    }
+
+    #scrollingLineContainer {
+      position: absolute;
+      top: 100%;
+      // top: 0;
+      // bottom: 0;
+      // left: 50%;
+      // transform: translateX(-50%, 0);
+      right: 0;
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  &#portfolio {
+    background: #212121;
+    padding: 64px 0 0 0;
+    $fontSize: 10vw;
+    h1 {
+      font-size: $fontSize;
+      font-weight: 600;
+      line-height: $fontSize;
+      text-align: center;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      .js-lystaddei-text-animation {
+        display: inline-block;
+      }
+    }
+  }
+}

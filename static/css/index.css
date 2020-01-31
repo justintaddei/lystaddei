@@ -1,0 +1,100 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  background: #212121;
+  color: #fafafa;
+  overflow-x: hidden;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  -webkit-tap-highlight-color: transparent;
+}
+
+section {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+}
+
+section#welcome #scrollingVideo {
+  height: 100vh;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  background: url("/images/lys-bw.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+section#welcome h1 {
+  font-size: 10vw;
+  font-weight: 600;
+  line-height: 10vw;
+  top: calc(50% - 5vw);
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+section#welcome h1 .js-lystaddei-text-animation {
+  display: inline-block;
+}
+
+section#welcome .scroll-down {
+  position: absolute;
+  font-size: calc(15px + 2vw);
+  text-align: center;
+  width: 100%;
+  left: 0;
+  top: calc(50% + 10vw);
+  cursor: pointer;
+}
+
+section#welcome .scroll-down p {
+  margin: 0;
+  padding: 0;
+}
+
+section#welcome .scroll-down svg {
+  width: calc(25px + 2vw);
+  height: calc(25px + 2vw);
+  fill: #fff;
+}
+
+section#welcome #scrollingLineContainer {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  height: 100%;
+  width: 100%;
+}
+
+section#portfolio {
+  background: #212121;
+  padding: 64px 0 0 0;
+}
+
+section#portfolio h1 {
+  font-size: 10vw;
+  font-weight: 600;
+  line-height: 10vw;
+  text-align: center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+section#portfolio h1 .js-lystaddei-text-animation {
+  display: inline-block;
+}
+/*# sourceMappingURL=index.css.map */
