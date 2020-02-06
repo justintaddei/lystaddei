@@ -183,6 +183,6 @@ app.post("/submit", async (req, res) => {
 
 app.use("/", express.static("./static"));
 
-app.listen(80, "0.0.0.0", err => {
+app.listen(3001, "localhost", err => {
   if (err) console.error(err);
 });
