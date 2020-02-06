@@ -62,8 +62,9 @@ const videoCanvasContext = videoCanvas.getContext("2d");
 
 const controller = new ScrollMagic.Controller();
 
+const scrollDuration = 500;
 const videoScene = new ScrollMagic.Scene({
-  duration: 1000,
+  duration: scrollDuration,
   triggerElement: welcomeSection,
   triggerHook: 0
 })
@@ -76,7 +77,7 @@ const videoScene = new ScrollMagic.Scene({
  */
 let amountScrolled = 0;
 videoScene.on("update", (e: { scrollPos: number }) => {
-  amountScrolled = e.scrollPos / 1000;
+  amountScrolled = e.scrollPos / scrollDuration;
 });
 
 /**
@@ -136,15 +137,15 @@ function drawImageProp(
   if (offsetX > 1) offsetX = 1;
   if (offsetY > 1) offsetY = 1;
 
-  var iw = img.width,
-    ih = img.height,
+  var iw = img.width as number,
+    ih = img.height as number,
     r = Math.min(w / iw, h / ih),
     nw = iw * r, // new prop. width
     nh = ih * r, // new prop. height
-    cx,
-    cy,
-    cw,
-    ch,
+    cx: number,
+    cy: number,
+    cw: number | SVGAnimatedLength,
+    ch: number | SVGAnimatedLength,
     ar = 1;
 
   // decide which gap to fill
@@ -195,8 +196,8 @@ function updateFrame(playheadPosition: number) {
   videoCanvasContext.clearRect(0, 0, videoCanvas.width, videoCanvas.height);
 
   // Render the frame in the middle of the canvas
-  const x = Math.floor((videoCanvas.width - imgData.naturalWidth) / 2);
-  const y = Math.floor((videoCanvas.height - imgData.naturalHeight) / 2);
+  // const x = Math.floor((videoCanvas.width - imgData.naturalWidth) / 2);
+  // const y = Math.floor((videoCanvas.height - imgData.naturalHeight) / 2);
 
   drawImageProp(videoCanvasContext, imgData);
 }
@@ -267,7 +268,9 @@ function updatePlayhead() {
 // Start the animation loop
 updatePlayhead();
 
-document.querySelector(".scroll-down").addEventListener("click", () => {
+document.querySelector(".scroll-down").addEventListener("click", e => {
+  e.preventDefault();
+  e.stopImmediatePropagation();
   const targetY = document.querySelector("#portfolio").getBoundingClientRect()
     .top;
   const targets = { currentY: window.pageYOffset };
@@ -281,3 +284,125 @@ document.querySelector(".scroll-down").addEventListener("click", () => {
     }
   });
 });
+
+const nav = document.querySelector(".nav");
+
+document.addEventListener("scroll", () => {
+  if (window.pageYOffset > 30) document.body.classList.add("header-filled");
+  else document.body.classList.remove("header-filled");
+});
+
+const imageSlider = document.querySelector("#imageSliderContainer");
+const imageCount = document.querySelector(".image-count");
+
+let [activeImage, standbyImage] = (imageSlider.querySelectorAll(
+  ".slider-image"
+) as unknown) as HTMLElement[];
+
+function setImage(img: HTMLElement, url: string) {
+  img.style.backgroundImage = `url("${url}")`;
+}
+
+function setActiveDot(index: number) {
+  document.querySelector("[id*=imageDot].active")?.classList.remove("active");
+
+  document.querySelector(`#imageDot${index}`).classList.add("active");
+}
+
+let currentImage = 0;
+let totalImages: number;
+let imagesArray = [];
+
+function getIndex(index: number) {
+  if (index < 0) return totalImages - 1;
+  else if (index < totalImages) return index;
+  return 0;
+}
+
+function setCurrentImage(index: number) {
+  currentImage = getIndex(index);
+
+  setActiveDot(currentImage);
+
+  setImage(standbyImage, imagesArray[currentImage]);
+
+  activeImage.classList.add("hide");
+  standbyImage.classList.remove("hide");
+
+  [activeImage, standbyImage] = [standbyImage, activeImage];
+}
+
+async function initImageSlider() {
+  const { uploads } = await fetch("/uploads.json").then(res => res.json());
+  imagesArray = uploads;
+  totalImages = uploads.length;
+
+  for (let i = 0; i < totalImages; i++) {
+    const dot = document.createElement("div");
+    dot.id = `imageDot${i}`;
+    dot.dataset.index = i.toString();
+    imageCount.appendChild(dot);
+  }
+
+  setImage(activeImage, uploads[0]);
+  setImage(standbyImage, uploads[1]);
+
+  setCurrentImage(0);
+
+  imageSlider.addEventListener("touchstart", onTouchStart);
+  imageSlider.addEventListener("touchmove", onTouchMove);
+  imageSlider.addEventListener("touchend", onTouchEnd);
+
+  document
+    .querySelector(".next")
+    .addEventListener("click", () => setCurrentImage(currentImage + 1));
+  document
+    .querySelector(".prev")
+    .addEventListener("click", () => setCurrentImage(currentImage - 1));
+
+  imageCount.addEventListener("click", e => {
+    const index = (e.target as HTMLElement)?.dataset?.index;
+
+    if (index) setCurrentImage(parseInt(index, 10));
+  });
+}
+
+function onTouchStart(e) {}
+function onTouchMove(e) {}
+function onTouchEnd(e) {}
+
+initImageSlider();
+
+document.querySelector(".nav-toggle").addEventListener("click", () => {
+  document.body.classList.toggle("nav-open");
+});
+
+document.addEventListener("click", e => {
+  const elem = e.target as HTMLElement;
+  if (!("closest" in elem)) return;
+  const targetId = elem.closest("a")?.getAttribute("href");
+  if (!targetId) return;
+  if (targetId.charAt(0) !== "#") return;
+
+  e.preventDefault();
+  e.stopImmediatePropagation();
+  scrollToElement(targetId);
+});
+
+function scrollToElement(id: string) {
+  document.body.classList.remove("nav-open");
+  const targetY =
+    document.querySelector(id)?.getBoundingClientRect().top +
+    window.pageYOffset;
+  const targets = { currentY: window.pageYOffset };
+
+  anime({
+    targets,
+    currentY: [targets.currentY, id === "#welcome" ? 0 : targetY],
+    duration: 500,
+    easing: "easeInOutSine",
+    update: function() {
+      window.scrollTo(0, targets.currentY);
+    }
+  });
+}

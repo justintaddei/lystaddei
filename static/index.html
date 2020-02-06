@@ -8,15 +8,33 @@
     <title>Offical Lys Taddei Modeling Portfolio</title>
     <link rel="stylesheet" href="/css/index.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet">
+
+    <style>
+        html {
+            background: #212121;
+        }
+    </style>
 </head>
 
 <body>
-    <!--  <nav>
-        <a href="#welcome">welcome</a>
-        <a href="#portfolio">portfolio</a>
-        <a href="#about">about</a>
-        <a href="#contact">contact</a>
-    </nav> -->
+    <div class="nav">
+        <h2>LYS TADDEI</h2>
+        <nav>
+            <a href="#welcome">welcome</a>
+            <a href="#portfolio">portfolio</a>
+            <a href="#about">about</a>
+            <a href="#inquire">inquire</a>
+        </nav>
+    </div>
+    <div class="nav-toggle">
+        <svg id="open" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" /></svg>
+        <svg id="close" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+            <path
+                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+            <path d="M0 0h24v24H0z" fill="none" /></svg>
+    </div>
     <section id="welcome">
         <canvas id="scrollingVideo"></canvas>
         <h1>
@@ -31,12 +49,12 @@
             <span class="js-lystaddei-text-animation">E</span>
             <span class="js-lystaddei-text-animation">I</span>
         </h1>
-        <div class="scroll-down">
+        <a href="#portfolio" class="scroll-down">
             <p>Scroll down</p>
             <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
                 <path d="M0 0h24v24H0V0z" fill="none" />
                 <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z" /></svg>
-        </div>
+        </a>
         <svg id="scrollingLineContainer" width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 800 1280"
             xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linecap="round"
             stroke-linejoin="round" stroke-miterlimit="1.5">
@@ -47,23 +65,156 @@
         </svg>
     </section>
     <section id="portfolio">
-        <h1>
+        <h2>
             PORTFOLIO
-        </h1>
+        </h2>
         <div id="imageSliderContainer">
-            <div id="imageSlider">
-                <img src="" alt="">
-            </div>
+            <div class="slider-image"></div>
+            <div class="slider-image hide"></div>
+
+            <svg class="prev" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+                <path d="M0 0h24v24H0z" fill="none" />
+            </svg>
+            <svg class="next" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+                <path d="M0 0h24v24H0z" fill="none" />
+            </svg>
+        </div>
+        <div class="image-count">
         </div>
     </section>
-    <section id="about"></section>
-    <section id="contact"></section>
+    <section id="about">
+        <h2>ABOUT</h2>
+        <div id="aboutWrapper">
+            <p>Lys is a model based out of Sonoma County, California. Inspired by the beauty of California, she began
+                her
+                modeling
+                career working by the seashore of San Fransisco and has been in love with it ever since.</p>
+            <p>She has been featured in magazines, has done campaigns, and worked with companies including Alli Blu Prom
+                &
+                Bridal,
+                Melody White Photography, Starlet Prom & Bridal, and Team Whiskey, to name a few.</p>
+            <p>If you are interested in working with Lys Taddei, submit an inquiry below.</p>
+        </div>
+        <a href="#inquire">
+            <svg id="scrollToContact" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+                <path d="M0 0h24v24H0V0z" fill="none" />
+                <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z" /></svg>
+        </a>
+    </section>
+    <section id="inquire">
+        <div id="form">
+            <h2 id="status">INQUIRE</h2>
+            <input required type="text" id="name" placeholder="Name">
+            <input required type="email" id="email" placeholder="Email">
+            <textarea required id="message" placeholder="Message"></textarea>
+            <div id="robotCheck" class="g-recaptcha" data-sitekey="6LdgxNUUAAAAAMBqbIUnMb8XmJNZdC9E_7AxoM-S">
+            </div>
+            <button id="send">
+                SEND
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+                    <path d="M0 0h24v24H0z" fill="none" /></svg>
+            </button>
+        </div>
+    </section>
 
+    <footer>
+        <span>Copyright Lys Taddei</span>
+        <span>Web design by <a href="https://justintaddei.com" target="_blank">Justin Taddei</a></span>
+    </footer>
     <script defer src="/js/lib/ScrollMagic.min.js"></script>
     <script defer src="/js/lib/debug.addIndicators.min.js"></script>
     <script defer src="/js/lib/animejs.js"></script>
+    <script defer src="https://unpkg.com/unfetch/polyfill"></script>
     <script defer src="/js/index.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
+    <script>
+        function validate(input) {
+            if (input instanceof Array) {
+                var valid = true
+
+                for (var i = 0; i < input.length; i++) {
+                    if (!validate(input[i])) valid = false;
+                }
+
+                return valid;
+            }
+
+            if (!input.validity.valid) {
+                input.classList.add('invalid');
+                return false;
+            } else {
+                input.classList.remove('invalid');
+                return true;
+            }
+        }
+
+        document.addEventListener('input', function (e) {
+            if (!e.target.validity) return;
+
+            validate(e.target)
+        })
+
+        document.querySelector('#send').addEventListener('click', function (e) {
+            var name = document.querySelector('#name');
+            var email = document.querySelector('#email');
+            var message = document.querySelector('#message');
+            var recaptcha = document.querySelector('#robotCheck');
+
+            var allValid = validate([name, email, message])
+
+            var recaptchaResponse = grecaptcha.getResponse();
+
+            if (!recaptchaResponse) {
+                allValid = false;
+                recaptcha.classList.add('invalid')
+            } else
+                recaptcha.classList.remove('invalid')
+
+            if (!allValid) return;
+
+            var form = document.querySelector('#form');
+
+            form.classList.add('sending')
+
+            grecaptcha.reset();
+            try {
+
+                fetch('/submit', {
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    method: "POST",
+                    body: JSON.stringify({
+                        name: name.value,
+                        email: email.value,
+                        message: message.value,
+                        recaptchaResponse: recaptchaResponse
+                    })
+                }).then(function (res) { return res.text() }).then(function (text) {
+                    if (text === 'Message sent') {
+                        form.innerHTML = '<div class="message">Message sent</div>'
+                        form.classList.remove('sending')
+                    } else {
+
+                        form.classList.remove('sending');
+                        document.querySelector('#status').classList.add('error');
+                        document.querySelector('#status').textContent = 'Failed to send';
+                    }
+                })
+            } catch (e) {
+                console.log('e :', e);
+                form.classList.remove('sending');
+                document.querySelector('#status').classList.add('error');
+                document.querySelector('#status').textContent = 'Failed to send';
+
+            }
+        });
+    </script>
 </body>
 
 </html>

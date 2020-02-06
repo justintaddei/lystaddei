@@ -1,0 +1,148 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Admin | Lys Taddei</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 5% 5%;
+            background: url('/images/lys-bw.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .container {
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            overflow: auto;
+        }
+
+        .upload {
+            text-align: center;
+        }
+
+        button {
+            width: 66.666%;
+            height: 50px;
+            font-size: 20px;
+            background: black;
+            color: #fff;
+            border: 1px solid #fff;
+            cursor: pointer;
+            outline: none;
+            margin: 32px;
+        }
+
+        button:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        .images {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .image {
+            width: 400px;
+            margin: 32px;
+        }
+
+        .image:hover {
+            opacity: 0.9;
+            box-shadow: 0 0 20px red;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="upload">
+            <button id="uploadBtn">Upload</button>
+            <input id="file" hidden type="file" name="uploadedFile" accept="image/*">
+        </div>
+        <div class="images">
+
+        </div>
+    </div>
+
+    <script>
+
+
+        const fileInput = document.querySelector('#file');
+
+        const uploadBtn = document.querySelector('#uploadBtn');
+
+        uploadBtn.addEventListener('click', () => fileInput.click());
+
+        fileInput.addEventListener('change', (e) => {
+            const fd = new FormData();
+            fd.append("uploadedFile", e.target.files[0]);
+
+            fetch('/api/upload', {
+                body: fd,
+                method: 'POST'
+            }).then(res => res.text())
+                .then(msg => {
+                    console.log(msg)
+                    location.reload();
+                }).catch(err => console.error(err))
+        });
+
+        const images = document.querySelector('.images');
+
+        fetch('/uploads.json').then(res => res.json()).then(json => {
+            json.uploads.forEach(image => {
+                const img = document.createElement('img')
+                img.className = 'image';
+                img.src = image;
+                img.dataset.image = image;
+
+                images.appendChild(img);
+            })
+        })
+
+
+        images.addEventListener('click', (e) => {
+            const img = e.target.closest('img')
+
+            if (!img) return;
+
+            const shouldDelete = confirm('Delete this photo?')
+
+            if (!shouldDelete) return;
+
+            console.log('img.src :', img.dataset.image);
+
+            fetch(`/api/upload/${encodeURIComponent(img.dataset.image)}`, {
+                method: 'DELETE'
+            }).then(() => location.reload())
+        })
+
+    </script>
+</body>
+
+</html>

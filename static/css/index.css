@@ -1,6 +1,7 @@
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  outline: none;
 }
 
 html,
@@ -12,7 +13,164 @@ body {
   overflow-x: hidden;
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
+  overflow-x: hidden;
   -webkit-tap-highlight-color: transparent;
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1;
+  padding: 0 8px 0 28px;
+  margin: 0;
+  color: #212121;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease;
+}
+
+.nav h2 {
+  justify-self: flex-start;
+  font-size: 25px;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  -webkit-transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease;
+}
+
+.nav a {
+  text-decoration: none;
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  font-size: 20px;
+  display: inline-block;
+  padding: 12px 24px;
+  margin: 16px 8px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-weight: 600;
+  color: inherit;
+  outline: none;
+}
+
+.nav a:hover, .nav a:focus {
+  color: #212121;
+  background: #fff;
+}
+
+@media screen and (max-width: 1020px) {
+  .nav {
+    -webkit-transition: opacity 0.25s linear;
+    transition: opacity 0.25s linear;
+    height: 100%;
+    color: #aaa;
+    background: rgba(21, 21, 21, 0.8);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+            backdrop-filter: blur(20px) saturate(180%);
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    overflow-y: auto;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .nav h2 {
+    font-size: 40px;
+    margin: 64px 0;
+    opacity: 1;
+  }
+  .nav nav a {
+    display: block;
+    width: 100%;
+    margin: 32px 0;
+    text-align: center;
+  }
+}
+
+.nav-open .nav {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.nav-open .nav-toggle {
+  fill: #fff;
+}
+
+.nav-open .nav-toggle svg#close {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  opacity: 1;
+}
+
+.nav-open .nav-toggle svg#open {
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  opacity: 0;
+}
+
+.header-filled .nav,
+.header-filled .nav-toggle {
+  color: #aaa;
+  fill: #aaa;
+  background: rgba(21, 21, 21, 0.8);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+          backdrop-filter: blur(20px) saturate(180%);
+  -webkit-box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
+}
+
+.header-filled .nav h2,
+.header-filled .nav-toggle h2 {
+  opacity: 1;
+}
+
+.nav-toggle {
+  display: none;
+}
+
+@media screen and (max-width: 1020px) {
+  .nav-toggle {
+    display: block;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    fill: #000;
+    width: 64px;
+    height: 64px;
+    z-index: 1;
+    cursor: pointer;
+  }
+  .nav-toggle svg {
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    -webkit-transition: opacity 0.2s, -webkit-transform 0.2s;
+    transition: opacity 0.2s, -webkit-transform 0.2s;
+    transition: transform 0.2s, opacity 0.2s;
+    transition: transform 0.2s, opacity 0.2s, -webkit-transform 0.2s;
+  }
+  .nav-toggle svg#close {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 0;
+  }
 }
 
 section {
@@ -58,6 +216,8 @@ section#welcome .scroll-down {
   left: 0;
   top: calc(50% + 10vw);
   cursor: pointer;
+  color: inherit;
+  text-decoration: none;
 }
 
 section#welcome .scroll-down p {
@@ -81,10 +241,11 @@ section#welcome #scrollingLineContainer {
 
 section#portfolio {
   background: #212121;
-  padding: 64px 0 0 0;
+  padding: 96px 0 0 0;
+  height: auto;
 }
 
-section#portfolio h1 {
+section#portfolio h2 {
   font-size: 10vw;
   font-weight: 600;
   line-height: 10vw;
@@ -94,7 +255,372 @@ section#portfolio h1 {
   padding: 0;
 }
 
-section#portfolio h1 .js-lystaddei-text-animation {
+section#portfolio .image-count {
+  width: 100%;
+  position: relative;
+  bottom: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding: 0 64px 32px 64px;
+}
+
+section#portfolio .image-count div {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #888;
+  margin: 0 8px 8px 8px;
+  cursor: pointer;
+}
+
+section#portfolio .image-count div:hover {
+  background: #aaa;
+}
+
+section#portfolio .image-count div.active {
+  background: #fff;
+}
+
+section#about {
+  background: #212121;
+  padding: 96px 0;
+  height: auto;
+}
+
+section#about h2 {
+  font-size: 10vw;
+  font-weight: 600;
+  line-height: 10vw;
+  text-align: center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+section#about h2 .js-lystaddei-text-animation {
   display: inline-block;
+}
+
+section#about a {
+  text-decoration: none;
+}
+
+section#about #aboutWrapper {
+  font-size: 20px;
+  font-family: "Montserrat", sans-serif;
+  width: 66.66%;
+  margin: 64px auto;
+  padding: 32px 64px;
+  position: relative;
+  line-height: 1.5em;
+}
+
+section#about #aboutWrapper::before, section#about #aboutWrapper::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border: 8px solid #fff;
+}
+
+section#about #aboutWrapper::before {
+  right: 0;
+  top: 0;
+  border-left: none;
+  border-bottom: none;
+}
+
+section#about #aboutWrapper::after {
+  left: 0;
+  bottom: 0;
+  border-right: none;
+  border-top: none;
+}
+
+@media screen and (max-width: 1020px) {
+  section#about #aboutWrapper {
+    padding: 32px 48px;
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  section#about #aboutWrapper {
+    width: 90%;
+    padding: 24px 32px;
+    font-size: 18px;
+  }
+}
+
+section#about svg {
+  width: calc(25px + 2vw);
+  height: calc(25px + 2vw);
+  fill: #fff;
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  cursor: pointer;
+}
+
+section#inquire {
+  min-height: 100vh;
+  height: auto;
+  padding: 64px 16.66%;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+section#inquire h2 {
+  font-size: 10vw;
+  font-weight: 600;
+  line-height: 10vw;
+  text-align: center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+section#inquire h2 .js-lystaddei-text-animation {
+  display: inline-block;
+}
+
+section#inquire #form {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  padding: 64px 128px;
+}
+
+section#inquire #form .invalid {
+  -webkit-box-shadow: 0 0 0 7px #000, 0 0 0 8px #f00 !important;
+          box-shadow: 0 0 0 7px #000, 0 0 0 8px #f00 !important;
+}
+
+section#inquire #form.sending {
+  pointer-events: none;
+  opacity: 0.9;
+  -webkit-filter: blur(20px);
+          filter: blur(20px);
+}
+
+section#inquire #form .error {
+  font-size: 20px;
+  color: red;
+  background: #fff;
+}
+
+section#inquire #form .message {
+  width: 100%;
+  height: 120px;
+  font-size: 30px;
+  background: #efe;
+  color: #0a0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+section#inquire #form input,
+section#inquire #form textarea {
+  width: 100%;
+  height: 60px;
+  margin: 32px 0;
+  padding: 0 32px;
+  font-size: 20px;
+  outline: none;
+  color: #212121;
+  border: none;
+  font-weight: 600;
+  font-family: "Montserrat", sans-serif;
+}
+
+section#inquire #form input:focus, section#inquire #form input:hover,
+section#inquire #form textarea:focus,
+section#inquire #form textarea:hover {
+  -webkit-box-shadow: 0 0 0 7px #000, 0 0 0 8px #fff;
+          box-shadow: 0 0 0 7px #000, 0 0 0 8px #fff;
+}
+
+section#inquire #form textarea {
+  height: 200px;
+  padding: 32px;
+}
+
+section#inquire #form button {
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  font-size: 20px;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  padding: 12px 24px;
+  margin: 32px 0 0 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-weight: 600;
+  color: #212121;
+  border: none;
+  fill: currentColor;
+  cursor: pointer;
+  outline: none;
+}
+
+section#inquire #form button svg {
+  margin: 0 0 0 16px;
+}
+
+section#inquire #form button:focus, section#inquire #form button:hover {
+  -webkit-box-shadow: 0 0 0 7px #000, 0 0 0 8px #fff;
+          box-shadow: 0 0 0 7px #000, 0 0 0 8px #fff;
+}
+
+section#inquire #form button:active {
+  background: #000;
+  color: #fff;
+}
+
+@media screen and (max-width: 1020px) {
+  section#inquire {
+    padding: 64px 5%;
+  }
+  section#inquire #form {
+    padding: 48px;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  section#inquire {
+    padding: 48px 16px;
+  }
+  section#inquire #form {
+    padding: 32px 16px;
+  }
+}
+
+#imageSliderContainer {
+  height: calc(100vh - 300px);
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  padding: 64px 0 0 0;
+}
+
+#imageSliderContainer .slider-image {
+  height: calc(100% - 128px);
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  position: absolute;
+  top: 64px;
+  left: 0;
+  -webkit-transition: opacity 0.2s linear;
+  transition: opacity 0.2s linear;
+}
+
+#imageSliderContainer .slider-image.hide {
+  opacity: 0;
+}
+
+#imageSliderContainer .next,
+#imageSliderContainer .prev {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 64px;
+  height: 64px;
+  background: rgba(33, 33, 33, 0.6);
+  -webkit-backdrop-filter: blur(20px);
+          backdrop-filter: blur(20px);
+  left: 5%;
+  fill: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#imageSliderContainer .next:hover,
+#imageSliderContainer .prev:hover {
+  -webkit-transform: translateY(-50%) scale(1.1);
+          transform: translateY(-50%) scale(1.1);
+  background: white;
+  fill: #212121;
+}
+
+#imageSliderContainer .next:active,
+#imageSliderContainer .prev:active {
+  background: #000;
+  fill: #fff;
+}
+
+#imageSliderContainer .next {
+  left: auto;
+  right: 5%;
+  -webkit-transform: translateY(-50%) rotate(180deg);
+          transform: translateY(-50%) rotate(180deg);
+}
+
+#imageSliderContainer .next:hover {
+  -webkit-transform: translateY(-50%) rotate(180deg) scale(1.1);
+          transform: translateY(-50%) rotate(180deg) scale(1.1);
+}
+
+footer {
+  background: #212121;
+  color: #888;
+  width: 100%;
+  min-height: 60px;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+footer a {
+  text-decoration: none;
+  color: inherit;
+  border-bottom: 2px solid currentColor;
+}
+
+footer > span {
+  margin: 16px 32px;
 }
 /*# sourceMappingURL=index.css.map */
