@@ -185,4 +185,6 @@ app.use("/", express.static("./static"));
 
 app.listen(3001, "localhost", err => {
   if (err) console.error(err);
+
+  console.log("Server running on localhost:3001");
 });
