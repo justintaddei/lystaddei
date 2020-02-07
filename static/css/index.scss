@@ -21,7 +21,7 @@ body {
   top: 0;
   right: 0;
   left: 0;
-  z-index: 1;
+  z-index: 2;
   padding: 0 8px 0 28px;
   margin: 0;
   color: #212121;
@@ -46,7 +46,7 @@ body {
     padding: 12px 24px;
     margin: 16px 8px;
     box-sizing: border-box;
-    font-weight: 600;
+    font-weight: 400; //600;
     color: inherit;
     outline: none;
     &:hover,
@@ -80,6 +80,22 @@ body {
         text-align: center;
       }
     }
+  }
+}
+
+body.portfolio {
+  > a > h2 {
+    opacity: 1;
+    color: #aaa;
+    margin-left: 32px;
+    text-decoration: none;
+  }
+  .nav {
+    color: #fff;
+  }
+
+  .nav-toggle {
+    fill: #fff;
   }
 }
 
@@ -117,7 +133,6 @@ body {
     opacity: 1;
   }
 }
-
 .nav-toggle {
   display: none;
   @media screen and (max-width: 1020px) {
@@ -128,7 +143,7 @@ body {
     fill: #000;
     width: 64px;
     height: 64px;
-    z-index: 1;
+    z-index: 2;
     cursor: pointer;
 
     svg {
@@ -163,12 +178,23 @@ section {
       background: url("/images/lys-bw.jpg");
       background-repeat: no-repeat;
       background-size: cover;
+      opacity: 0;
+      animation: fade 3s ease 0s 1 forwards;
+
+      @keyframes fade {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
     }
 
     $fontSize: 10vw;
     h1 {
       font-size: $fontSize;
-      font-weight: 600;
+      font-weight: 400; //600;
       line-height: $fontSize;
       top: calc(50% - #{$fontSize / 2});
       position: absolute;
@@ -221,9 +247,10 @@ section {
     padding: 96px 0 0 0;
     $fontSize: 10vw;
     height: auto;
+    text-align: center;
     h2 {
       font-size: $fontSize;
-      font-weight: 600;
+      font-weight: 400; //600;
       line-height: $fontSize;
       text-align: center;
       width: 100%;
@@ -259,12 +286,12 @@ section {
 
   &#about {
     background: #212121;
-    padding: 96px 0;
+    padding: 32px 0;
     $fontSize: 10vw;
     height: auto;
     h2 {
       font-size: $fontSize;
-      font-weight: 600;
+      font-weight: 400; //600;
       line-height: $fontSize;
       text-align: center;
       width: 100%;
@@ -280,7 +307,7 @@ section {
     }
 
     #aboutWrapper {
-      font-size: 20px;
+      font-size: 25px;
       font-family: "Montserrat", sans-serif;
       width: 66.66%;
       margin: 64px auto;
@@ -347,7 +374,7 @@ section {
     align-items: center;
     h2 {
       font-size: $fontSize;
-      font-weight: 600;
+      font-weight: 400; //600;
       line-height: $fontSize;
       text-align: center;
       width: 100%;
@@ -403,7 +430,7 @@ section {
         outline: none;
         color: #212121;
         border: none;
-        font-weight: 600;
+        font-weight: 400; //600;
         font-family: "Montserrat", sans-serif;
         &:focus,
         &:hover {
@@ -424,7 +451,7 @@ section {
         padding: 12px 24px;
         margin: 32px 0 0 0;
         box-sizing: border-box;
-        font-weight: 600;
+        font-weight: 400; //600;
         color: #212121;
         border: none;
         fill: currentColor;
@@ -524,7 +551,7 @@ footer {
   position: relative;
   display: flex;
   font-family: "Montserrat", sans-serif;
-  font-weight: 600;
+  font-weight: 400; //600;
   justify-content: space-around;
   flex-wrap: wrap;
   align-items: center;
@@ -537,5 +564,100 @@ footer {
 
   > span {
     margin: 16px 32px;
+  }
+}
+a {
+  text-decoration: none;
+}
+#viewFullPortfolio {
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  font-size: 20px;
+  display: inline-flex;
+  padding: 16px 32px;
+  margin: 0 auto 32px auto;
+  box-sizing: border-box;
+  font-weight: 400; //600;
+  color: #212121;
+  border: none;
+  fill: currentColor;
+  cursor: pointer;
+  text-decoration: none;
+  outline: none;
+
+  &:focus,
+  &:hover {
+    box-shadow: 0 0 0 7px #000, 0 0 0 8px #fff;
+  }
+  &:active {
+    background: #000;
+    color: #fff;
+  }
+}
+
+#fullPortfolio {
+  background: #212121;
+  padding: 196px 0;
+  $fontSize: 10vw;
+  text-align: center;
+  height: auto;
+  min-height: 100vh;
+  @media screen and (max-width: 1020px) {
+    padding: 96px 0;
+  }
+  h1 {
+    font-size: $fontSize;
+    font-weight: 400; //600;
+    line-height: $fontSize;
+    text-align: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    .js-lystaddei-text-animation {
+      display: inline-block;
+    }
+  }
+
+  p {
+    font-size: calc(15px + 2vw);
+  }
+
+  .masonry {
+    margin: 1.5em auto;
+    width: 100%;
+    max-width: 90%;
+    column-gap: 1.5em;
+    column-count: 3;
+    position: relative;
+
+    @media screen and (max-width: 1080px) {
+      column-count: 2;
+    }
+
+    img {
+      margin: 0 0 1.5em;
+      width: 100%;
+      position: relative;
+      opacity: 0;
+      transition: opacity 1s linear;
+      cursor: pointer;
+
+      &.loaded {
+        opacity: 1;
+      }
+
+      &.big {
+        width: 100%;
+        height: 100vh;
+        z-index: 1;
+        position: fixed;
+        top: 0;
+        left: 0;
+        object-fit: contain;
+        padding: 2%;
+        backdrop-filter: blur(15px) saturate(180%);
+        background: rgba(30, 30, 30, 0.2);
+      }
+    }
   }
 }

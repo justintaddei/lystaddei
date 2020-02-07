@@ -22,7 +22,7 @@ body {
   top: 0;
   right: 0;
   left: 0;
-  z-index: 1;
+  z-index: 2;
   padding: 0 8px 0 28px;
   margin: 0;
   color: #212121;
@@ -59,7 +59,7 @@ body {
   margin: 16px 8px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  font-weight: 600;
+  font-weight: 400;
   color: inherit;
   outline: none;
 }
@@ -100,6 +100,21 @@ body {
     margin: 32px 0;
     text-align: center;
   }
+}
+
+body.portfolio > a > h2 {
+  opacity: 1;
+  color: #aaa;
+  margin-left: 32px;
+  text-decoration: none;
+}
+
+body.portfolio .nav {
+  color: #fff;
+}
+
+body.portfolio .nav-toggle {
+  fill: #fff;
 }
 
 .nav-open .nav {
@@ -152,7 +167,7 @@ body {
     fill: #000;
     width: 64px;
     height: 64px;
-    z-index: 1;
+    z-index: 2;
     cursor: pointer;
   }
   .nav-toggle svg {
@@ -190,11 +205,32 @@ section#welcome #scrollingVideo {
   background: url("/images/lys-bw.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  opacity: 0;
+  -webkit-animation: fade 3s ease 0s 1 forwards;
+          animation: fade 3s ease 0s 1 forwards;
+}
+
+@-webkit-keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 section#welcome h1 {
   font-size: 10vw;
-  font-weight: 600;
+  font-weight: 400;
   line-height: 10vw;
   top: calc(50% - 5vw);
   position: absolute;
@@ -243,11 +279,12 @@ section#portfolio {
   background: #212121;
   padding: 96px 0 0 0;
   height: auto;
+  text-align: center;
 }
 
 section#portfolio h2 {
   font-size: 10vw;
-  font-weight: 600;
+  font-weight: 400;
   line-height: 10vw;
   text-align: center;
   width: 100%;
@@ -292,13 +329,13 @@ section#portfolio .image-count div.active {
 
 section#about {
   background: #212121;
-  padding: 96px 0;
+  padding: 32px 0;
   height: auto;
 }
 
 section#about h2 {
   font-size: 10vw;
-  font-weight: 600;
+  font-weight: 400;
   line-height: 10vw;
   text-align: center;
   width: 100%;
@@ -315,7 +352,7 @@ section#about a {
 }
 
 section#about #aboutWrapper {
-  font-size: 20px;
+  font-size: 25px;
   font-family: "Montserrat", sans-serif;
   width: 66.66%;
   margin: 64px auto;
@@ -392,7 +429,7 @@ section#inquire {
 
 section#inquire h2 {
   font-size: 10vw;
-  font-weight: 600;
+  font-weight: 400;
   line-height: 10vw;
   text-align: center;
   width: 100%;
@@ -459,7 +496,7 @@ section#inquire #form textarea {
   outline: none;
   color: #212121;
   border: none;
-  font-weight: 600;
+  font-weight: 400;
   font-family: "Montserrat", sans-serif;
 }
 
@@ -486,7 +523,7 @@ section#inquire #form button {
   margin: 32px 0 0 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  font-weight: 600;
+  font-weight: 400;
   color: #212121;
   border: none;
   fill: currentColor;
@@ -604,7 +641,7 @@ footer {
   display: -ms-flexbox;
   display: flex;
   font-family: "Montserrat", sans-serif;
-  font-weight: 600;
+  font-weight: 400;
   -ms-flex-pack: distribute;
       justify-content: space-around;
   -ms-flex-wrap: wrap;
@@ -622,5 +659,118 @@ footer a {
 
 footer > span {
   margin: 16px 32px;
+}
+
+a {
+  text-decoration: none;
+}
+
+#viewFullPortfolio {
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  font-size: 20px;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  padding: 16px 32px;
+  margin: 0 auto 32px auto;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-weight: 400;
+  color: #212121;
+  border: none;
+  fill: currentColor;
+  cursor: pointer;
+  text-decoration: none;
+  outline: none;
+}
+
+#viewFullPortfolio:focus, #viewFullPortfolio:hover {
+  -webkit-box-shadow: 0 0 0 7px #000, 0 0 0 8px #fff;
+          box-shadow: 0 0 0 7px #000, 0 0 0 8px #fff;
+}
+
+#viewFullPortfolio:active {
+  background: #000;
+  color: #fff;
+}
+
+#fullPortfolio {
+  background: #212121;
+  padding: 196px 0;
+  text-align: center;
+  height: auto;
+  min-height: 100vh;
+}
+
+@media screen and (max-width: 1020px) {
+  #fullPortfolio {
+    padding: 96px 0;
+  }
+}
+
+#fullPortfolio h1 {
+  font-size: 10vw;
+  font-weight: 400;
+  line-height: 10vw;
+  text-align: center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#fullPortfolio h1 .js-lystaddei-text-animation {
+  display: inline-block;
+}
+
+#fullPortfolio p {
+  font-size: calc(15px + 2vw);
+}
+
+#fullPortfolio .masonry {
+  margin: 1.5em auto;
+  width: 100%;
+  max-width: 90%;
+  -webkit-column-gap: 1.5em;
+          column-gap: 1.5em;
+  -webkit-column-count: 3;
+          column-count: 3;
+  position: relative;
+}
+
+@media screen and (max-width: 1080px) {
+  #fullPortfolio .masonry {
+    -webkit-column-count: 2;
+            column-count: 2;
+  }
+}
+
+#fullPortfolio .masonry img {
+  margin: 0 0 1.5em;
+  width: 100%;
+  position: relative;
+  opacity: 0;
+  -webkit-transition: opacity 1s linear;
+  transition: opacity 1s linear;
+  cursor: pointer;
+}
+
+#fullPortfolio .masonry img.loaded {
+  opacity: 1;
+}
+
+#fullPortfolio .masonry img.big {
+  width: 100%;
+  height: 100vh;
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  -o-object-fit: contain;
+     object-fit: contain;
+  padding: 2%;
+  -webkit-backdrop-filter: blur(15px) saturate(180%);
+          backdrop-filter: blur(15px) saturate(180%);
+  background: rgba(30, 30, 30, 0.2);
 }
 /*# sourceMappingURL=index.css.map */

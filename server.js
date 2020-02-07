@@ -183,8 +183,9 @@ app.post("/submit", async (req, res) => {
 
 app.use("/", express.static("./static"));
 
-app.listen(3001, "localhost", err => {
+const addr = process.env.NODE_ENV === "production" ? "localhost" : "0.0.0.0";
+app.listen(process.env.PORT, addr, err => {
   if (err) console.error(err);
 
-  console.log("Server running on localhost:3001");
+  console.log(`Server running on ${addr}:${process.env.PORT}`);
 });

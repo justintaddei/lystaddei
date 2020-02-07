@@ -334,8 +334,8 @@ function setCurrentImage(index: number) {
 
 async function initImageSlider() {
   const { uploads } = await fetch("/uploads.json").then(res => res.json());
-  imagesArray = uploads;
-  totalImages = uploads.length;
+  imagesArray = uploads.slice(0, 5);
+  totalImages = imagesArray.length;
 
   for (let i = 0; i < totalImages; i++) {
     const dot = document.createElement("div");
@@ -344,8 +344,8 @@ async function initImageSlider() {
     imageCount.appendChild(dot);
   }
 
-  setImage(activeImage, uploads[0]);
-  setImage(standbyImage, uploads[1]);
+  setImage(activeImage, imagesArray[0]);
+  setImage(standbyImage, imagesArray[1]);
 
   setCurrentImage(0);
 

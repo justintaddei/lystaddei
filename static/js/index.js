@@ -225,16 +225,16 @@ function initImageSlider() {
                 case 0: return [4, fetch("/uploads.json").then(function (res) { return res.json(); })];
                 case 1:
                     uploads = (_a.sent()).uploads;
-                    imagesArray = uploads;
-                    totalImages = uploads.length;
+                    imagesArray = uploads.slice(0, 5);
+                    totalImages = imagesArray.length;
                     for (i = 0; i < totalImages; i++) {
                         dot = document.createElement("div");
                         dot.id = "imageDot" + i;
                         dot.dataset.index = i.toString();
                         imageCount.appendChild(dot);
                     }
-                    setImage(activeImage, uploads[0]);
-                    setImage(standbyImage, uploads[1]);
+                    setImage(activeImage, imagesArray[0]);
+                    setImage(standbyImage, imagesArray[1]);
                     setCurrentImage(0);
                     imageSlider.addEventListener("touchstart", onTouchStart);
                     imageSlider.addEventListener("touchmove", onTouchMove);
