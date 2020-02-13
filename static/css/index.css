@@ -39,9 +39,8 @@ body {
   transition: background-color 0.2s ease;
 }
 
-.nav h2 {
+.nav img {
   justify-self: flex-start;
-  font-size: 25px;
   margin: 0;
   padding: 0;
   opacity: 0;
@@ -89,8 +88,7 @@ body {
     opacity: 0;
     pointer-events: none;
   }
-  .nav h2 {
-    font-size: 40px;
+  .nav img {
     margin: 64px 0;
     opacity: 1;
   }
@@ -102,11 +100,8 @@ body {
   }
 }
 
-body.portfolio > a > h2 {
+body.portfolio .nav img {
   opacity: 1;
-  color: #aaa;
-  margin-left: 32px;
-  text-decoration: none;
 }
 
 body.portfolio .nav {
@@ -149,8 +144,8 @@ body.portfolio .nav-toggle {
           box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
 }
 
-.header-filled .nav h2,
-.header-filled .nav-toggle h2 {
+.header-filled .nav img,
+.header-filled .nav-toggle img {
   opacity: 1;
 }
 
@@ -329,7 +324,7 @@ section#portfolio .image-count div.active {
 
 section#about {
   background: #212121;
-  padding: 32px 0;
+  padding: 96px 0 32px 0;
   height: auto;
 }
 
@@ -679,7 +674,7 @@ a {
   font-weight: 400;
   color: #212121;
   border: none;
-  fill: currentColor;
+  background: #fafafa;
   cursor: pointer;
   text-decoration: none;
   outline: none;

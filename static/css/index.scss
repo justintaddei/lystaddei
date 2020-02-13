@@ -10,7 +10,7 @@ body {
   background: #212121;
   color: #fafafa;
   overflow-x: hidden;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 400;
   overflow-x: hidden;
   -webkit-tap-highlight-color: transparent;
@@ -29,9 +29,8 @@ body {
   align-items: center;
   justify-content: space-between;
   transition: background-color 0.2s ease;
-  h2 {
+  img {
     justify-self: flex-start;
-    font-size: 25px;
     margin: 0;
     padding: 0;
     opacity: 0;
@@ -39,7 +38,7 @@ body {
   }
   a {
     text-decoration: none;
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     text-transform: uppercase;
     font-size: 20px;
     display: inline-block;
@@ -67,8 +66,7 @@ body {
     overflow-y: auto;
     opacity: 0;
     pointer-events: none;
-    h2 {
-      font-size: 40px;
+    img {
       margin: 64px 0;
       opacity: 1;
     }
@@ -84,11 +82,8 @@ body {
 }
 
 body.portfolio {
-  > a > h2 {
+  .nav img {
     opacity: 1;
-    color: #aaa;
-    margin-left: 32px;
-    text-decoration: none;
   }
   .nav {
     color: #fff;
@@ -129,7 +124,7 @@ body.portfolio {
   box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),
     0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
 
-  h2 {
+  img {
     opacity: 1;
   }
 }
@@ -175,7 +170,7 @@ section {
       right: 0;
       bottom: 0;
       position: fixed;
-      background: url('/images/lys-bw.jpg');
+      background: url("/images/lys-bw.jpg");
       background-repeat: no-repeat;
       background-size: cover;
       opacity: 0;
@@ -286,7 +281,7 @@ section {
 
   &#about {
     background: #212121;
-    padding: 32px 0;
+    padding: 96px 0 32px 0;
     $fontSize: 10vw;
     height: auto;
     h2 {
@@ -308,7 +303,7 @@ section {
 
     #aboutWrapper {
       font-size: 25px;
-      font-family: 'Montserrat', sans-serif;
+      font-family: "Montserrat", sans-serif;
       width: 66.66%;
       margin: 64px auto;
       padding: 32px 64px;
@@ -316,7 +311,7 @@ section {
       line-height: 1.5em;
       &::before,
       &::after {
-        content: '';
+        content: "";
         display: block;
         position: absolute;
         $size: 200px;
@@ -431,7 +426,7 @@ section {
         color: #212121;
         border: none;
         font-weight: 400; //600;
-        font-family: 'Montserrat', sans-serif;
+        font-family: "Montserrat", sans-serif;
         &:focus,
         &:hover {
           box-shadow: 0 0 0 7px #000, 0 0 0 8px #fff;
@@ -444,7 +439,7 @@ section {
       }
 
       button {
-        font-family: 'Montserrat', sans-serif;
+        font-family: "Montserrat", sans-serif;
         text-transform: uppercase;
         font-size: 20px;
         display: inline-flex;
@@ -550,7 +545,7 @@ footer {
   min-height: 60px;
   position: relative;
   display: flex;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 400; //600;
   justify-content: space-around;
   flex-wrap: wrap;
@@ -570,7 +565,7 @@ a {
   text-decoration: none;
 }
 #viewFullPortfolio {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   text-transform: uppercase;
   font-size: 20px;
   display: inline-flex;
