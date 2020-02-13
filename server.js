@@ -7,6 +7,7 @@ const cookieParser = require("cookie-parser");
 const multer = require("multer");
 const { v4: uuid } = require("uuid");
 const fs = require("fs");
+const favicon = require("serve-favicon");
 
 require("dotenv").config({
   path:
@@ -70,6 +71,8 @@ function auth(req, res, next) {
 
 app.use(express.json());
 app.use(cookieParser());
+
+app.use(favicon(path.join(__dirname, "static", "favicon.ico")));
 
 app.post("/api/login", async (req, res) => {
   const { username, password } = req.body;
