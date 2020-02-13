@@ -11,6 +11,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: NPM Install
+        run: |
+          npm install
       - name: Deploy to Server
         uses: easingthemes/ssh-deploy@v2.0.7
         env:
@@ -20,13 +23,11 @@ jobs:
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: ${{ secrets.REMOTE_TARGET }}
-      - name: multiple command
+      - name: Restart pm2 app
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.REMOTE_HOST }}
           username: ${{ secrets.REMOTE_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
-            npm install
-            pm2 stop lystaddei
-            pm2 start lystaddei
+            pm2 restart lystaddei
