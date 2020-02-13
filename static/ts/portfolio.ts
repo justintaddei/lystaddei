@@ -10,7 +10,9 @@ document.querySelector(".nav-toggle").addEventListener("click", () => {
 const imageContainer = document.querySelector("#portfolioImages");
 
 async function loadImages() {
-  const { uploads } = await fetch("/uploads.json").then(res => res.json());
+  const { uploads } = await fetch("/uploads/uploads.json").then(res =>
+    res.json()
+  );
 
   for (let i = 0; i < uploads.length; i++) {
     const img = document.createElement("img");

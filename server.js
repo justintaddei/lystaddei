@@ -8,7 +8,10 @@ const multer = require("multer");
 const { v4: uuid } = require("uuid");
 const fs = require("fs");
 
-require("dotenv").config();
+require("dotenv").config({
+  path:
+    process.env.NODE_ENV === "production" ? "/home/.lystaddei-env" : "./.env"
+});
 
 const nodemailer = require("nodemailer");
 
@@ -31,14 +34,14 @@ const app = express();
 
 const upload = multer({
   storage: multer.diskStorage({
-    destination: "static/uploads/",
+    destination: process.env.UPLOAD_DIR,
     filename(req, file, cb) {
       cb(null, `${uuid()}${path.extname(file.originalname)}`);
     }
   })
 });
 
-const JSON_PATH = `./static/uploads.json`;
+const JSON_PATH = path.join(process.env.UPLOAD_DIR, "/uploads.json");
 function getPortfolioJSON() {
   return new Promise(resolve => {
     fs.readFile(JSON_PATH, (err, data) => {
@@ -181,6 +184,7 @@ app.post("/submit", async (req, res) => {
   });
 });
 
+app.use("/uploads/", express.static(process.env.UPLOAD_DIR));
 app.use("/", express.static("./static"));
 
 const addr = process.env.NODE_ENV === "production" ? "localhost" : "0.0.0.0";

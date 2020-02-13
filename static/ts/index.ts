@@ -333,7 +333,9 @@ function setCurrentImage(index: number) {
 }
 
 async function initImageSlider() {
-  const { uploads } = await fetch("/uploads.json").then(res => res.json());
+  const { uploads } = await fetch("/uploads/uploads.json").then(res =>
+    res.json()
+  );
   imagesArray = uploads.slice(0, 5);
   totalImages = imagesArray.length;
 
