@@ -72,7 +72,7 @@ function auth(req, res, next) {
 app.use(express.json());
 app.use(cookieParser());
 
-app.use(favicon(path.join(__dirname, "static", "favicon.ico")));
+app.use(favicon(path.join(__dirname, "static", "images", "favicon.ico")));
 
 app.post("/api/login", async (req, res) => {
   const { username, password } = req.body;
