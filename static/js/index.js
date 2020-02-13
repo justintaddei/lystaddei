@@ -222,7 +222,9 @@ function initImageSlider() {
         var uploads, i, dot;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4, fetch("/uploads.json").then(function (res) { return res.json(); })];
+                case 0: return [4, fetch("/uploads/uploads.json").then(function (res) {
+                        return res.json();
+                    })];
                 case 1:
                     uploads = (_a.sent()).uploads;
                     imagesArray = uploads.slice(0, 5);
