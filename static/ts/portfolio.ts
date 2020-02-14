@@ -20,6 +20,7 @@ async function loadImages() {
       img.classList.add("loaded");
     });
     img.src = uploads[i];
+    img.setAttribute("alt", `A photograph of Lys Taddei | ${uploads[i]}`);
     imageContainer.appendChild(img);
   }
 }
