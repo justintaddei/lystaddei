@@ -11,7 +11,7 @@ const favicon = require("serve-favicon");
 
 require("dotenv").config({
   path:
-    process.env.NODE_ENV === "production" ? "/home/.lystaddei-env" : "./.env"
+    process.env.NODE_ENV === "production" ? "/home/.lystaddei-env" : "./.env",
 });
 
 const nodemailer = require("nodemailer");
@@ -23,12 +23,12 @@ const transporter = nodemailer.createTransport({
   secureConnection: false, // TLS requires secureConnection to be false
   port: 587, // port for secure SMTP
   tls: {
-    ciphers: "SSLv3"
+    ciphers: "SSLv3",
   },
   auth: {
     user: process.env.OUTLOOK_ADDRESS,
-    pass: process.env.OUTLOOK_PASSWORD
-  }
+    pass: process.env.OUTLOOK_PASSWORD,
+  },
 });
 
 const app = express();
@@ -38,13 +38,13 @@ const upload = multer({
     destination: process.env.UPLOAD_DIR,
     filename(req, file, cb) {
       cb(null, `${uuid()}${path.extname(file.originalname)}`);
-    }
-  })
+    },
+  }),
 });
 
 const JSON_PATH = path.join(process.env.UPLOAD_DIR, "/uploads.json");
 function getPortfolioJSON() {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     fs.readFile(JSON_PATH, (err, data) => {
       if (err) {
         console.error(err);
@@ -103,7 +103,7 @@ app.post(
 
     json.uploads.unshift(filename);
 
-    fs.writeFile(JSON_PATH, JSON.stringify(json, null, 2), err => {
+    fs.writeFile(JSON_PATH, JSON.stringify(json, null, 2), (err) => {
       if (err) {
         res.sendStatus(500);
         console.error(err);
@@ -119,15 +119,16 @@ app.delete("/api/upload/:img", auth, async (req, res) => {
 
   const json = await getPortfolioJSON();
 
-  fs.unlink(path.join(__dirname, "/static", img), err => {
+  fs.unlink(path.join(process.env.UPLOAD_DIR, img.split("/")[2]), (err) => {
     if (err) return res.status(500).send(err.toString());
 
     json.uploads.splice(json.uploads.indexOf(img), 1);
 
-    fs.writeFile(JSON_PATH, JSON.stringify(json, null, 2), err => {
+    fs.writeFile(JSON_PATH, JSON.stringify(json, null, 2), (err) => {
       if (err) {
         res.sendStatus(500);
         console.error(err);
+        return;
       }
 
       res.status(200).send("delete");
@@ -151,9 +152,9 @@ app.post("/submit", async (req, res) => {
     const { success } = await fetch(
       `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET}&response=${recaptchaResponse}`,
       {
-        method: "POST"
+        method: "POST",
       }
-    ).then(res => res.json());
+    ).then((res) => res.json());
 
     if (!success) return res.status(400).send("ReCaptcha failed");
   } catch (e) {
@@ -174,11 +175,11 @@ app.post("/submit", async (req, res) => {
         </ul>
         <h2>Message:</h2>
         <p>${message}</p>
-    `
+    `,
   };
 
   // send mail with defined transport object
-  transporter.sendMail(mailOptions, function(error, info) {
+  transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
       console.error(error);
       return res.status(500).send("Failed to send. Please try again.");
@@ -191,7 +192,7 @@ app.use("/uploads/", express.static(process.env.UPLOAD_DIR));
 app.use("/", express.static("./static"));
 
 const addr = process.env.NODE_ENV === "production" ? "localhost" : "0.0.0.0";
-app.listen(process.env.PORT, addr, err => {
+app.listen(process.env.PORT, addr, (err) => {
   if (err) console.error(err);
 
   console.log(`Server running on ${addr}:${process.env.PORT}`);
